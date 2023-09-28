@@ -1,0 +1,77 @@
+{% extends "base.html" %}
+{% block title %} Página Inicial{% endblock %}
+{% block content %}
+<h1>Olá médico(a)</h1>
+<h2>Vou te ajudar a tomar decisões clínicas! <br>
+    Será que seu paciente está com Nefrite?</h2>
+<br>
+<h2>O paciente apresenta:</h2>
+<form action="/predict" method="post" onsubmit="return validateTemperature()">
+    <div class="form-group">
+        <label for="temperature">Temperature:</label>
+        <input type="text" class="form-control" name="temperature" placeholder="A Temperatura deve estar entre 35º e 42º Celsius" id="temperature">
+    </div>
+    <div class="form-group">
+        <label for="nausea">Náusea:</label>
+        <select class="form-control" name="nausea">
+            <option value="yes">Sim</option>
+            <option value="no">Não</option>
+        </select>
+    </div>
+    <div class="form-group">
+        <label for="lumbar_pain">Dor Lombar:</label>
+        <select class="form-control" name="lumbar_pain">
+            <option value="yes">Sim</option>
+            <option value="no">Não</option>
+        </select>
+    </div>
+    <div class="form-group">
+        <label for="urine_pushing">Dificuldade em Urinar:</label>
+        <select class="form-control" name="urine_pushing">
+            <option value="yes">Sim</option>
+            <option value="no">Não</option>
+        </select>
+    </div>
+    <div class="form-group">
+        <label for="micturition_pain">Dor ao Urinar:</label>
+        <select class="form-control" name="micturition_pain">
+            <option value="yes">Sim</option>
+            <option value="no">Não</option>
+        </select>
+    </div>
+    <div class="form-group">
+        <label for="burning_urethra">Ardência na Uretra:</label>
+        <select class="form-control" name="burning_urethra">
+            <option value="yes">Sim</option>
+            <option value="no">Não</option>
+        </select>
+    </div>
+    
+    <br>
+    <br>
+    <button type="submit" class="btn btn-primary">Prever</button>
+</form>
+
+<script>
+        function validateTemperature() {
+            var temperatureInput = document.getElementById("temperature");
+            var temperatureValue = temperatureInput.value.trim();  // Remove espaços em branco
+            
+            var temperatureFloat = parseFloat(temperatureValue);
+            
+            if (
+                temperatureValue === "" || 
+                isNaN(temperatureFloat) || 
+                temperatureFloat < 35 || 
+                temperatureFloat > 42
+            ) {
+                alert("Por favor, insira uma temperatura válida entre 35º e 42º Celsius.");
+                temperatureInput.focus();
+                return false;
+            }
+            
+            return true;
+        }    
+</script>
+{% endblock %}
+

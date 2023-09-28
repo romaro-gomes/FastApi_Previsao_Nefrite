@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+{% block title %}Resultado da Previsão{% endblock %}
+{% block content %}
+    <h1>Diagnóstico Proposto: {{ prediction }}</h1>
+    <br>
+    <div class="card" style="width: 18rem;">
+        <div class="card-header">
+            Probabilidade de Nefrite:
+        </div>
+            <ul class="list-group list-group-flush">
+                <li class="list-group-item">Positivo: {{ probability.split(' ')[0] }}</li>
+                <li class="list-group-item">Negativo: {{ probability.split(' ')[1] }}</li>
+            </ul>
+    
+    </div>
+    <br>
+    <a href="/">Voltar para a página inicial</a>
+{% endblock %}
+

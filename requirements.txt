@@ -1,0 +1,7 @@
+pandas
+matplotlib
+mlflow
+fastapi
+uvicorn
+python-multipart
+
